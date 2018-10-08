@@ -4,12 +4,14 @@
 #include <time.h>
 #include"MyCursor.h"
 #include<conio.h>
-
+#include<iostream>
+#include<Windows.h>
+using namespace std;
 void main()
 {
 	srand(unsigned int(time(nullptr)));
 	
-	CGameMap cGameMap(20, 20, 20);
+	CGameMap cGameMap(10, 10, 10);
 	CMyCursor cursor(0, 0, 10, 10);
 	clock_t oldTime, curTime;
 	oldTime = clock();
@@ -46,7 +48,17 @@ void main()
 			{
 				int x = cursor.GetX();
 				int y = cursor.GetY();
-				cGameMap.setTile(x, y);
+				if (cGameMap.GetMap()[y][x].GetNum() == 9)
+				{
+					cout << "Áö·Ú¹âÀ½";
+					exit(0);
+					system("pause");
+				}
+				cGameMap.setTile(y, x);
+				ScreenClear(); //È­¸é Áö¿î´Ù.
+				cGameMap.Draw();
+				cursor.Draw();
+				ScreenFlipping();
 			}
 				break;
 			}

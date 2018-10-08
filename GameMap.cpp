@@ -80,10 +80,25 @@ void CGameMap::SetMap(int w, int h, int n)
 #include<iostream>
 #include<Windows.h>
 using namespace std;
-void CGameMap::setTile(int x, int y)
+void CGameMap::setTile(int y, int x)
 {
+	//m_cMap[y][x].SetOpen(bOpen);
 	
-	
+	if (index(y,x)&&m_cMap[y][x].GetNum() != 9&& m_cMap[y][x].IsOpen()!=true)
+	{
+		m_cMap[y][x].SetOpen(true);
+		if (m_cMap[y][x].GetNum() ==0)
+		{
+			setTile(y - 1, x - 1);
+			setTile(y - 1, x);
+			setTile(y - 1, x+1);
+			setTile(y, x - 1);
+			setTile(y, x + 1);
+			setTile(y + 1, x - 1);
+			setTile(y + 1, x);
+			setTile(y + 1, x + 1);
+		}
+	}
 }
 
 void CGameMap::Draw()

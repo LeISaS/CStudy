@@ -17,6 +17,7 @@ public:
 	void SetMines();
 	void SetMap(int w, int h, int n);
 	CTile ** GetMap() { return m_cMap; }
-	void setTile(int x, int y);
+	bool index(int y, int x) { return (x >= 0 && x < 10 && y >= 0 && y < 10); }
+	void setTile(int y, int x);
 	void Draw();
 };
